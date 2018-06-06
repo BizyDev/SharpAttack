@@ -53,10 +53,6 @@
     <Reference Include="Microsoft.Lync.Utilities">
       <HintPath>References\Microsoft.Lync.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Uc">
-      <HintPath>References\Microsoft.Office.Uc.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -77,5 +73,11 @@
     <None Include="App.config" />
     <None Include="SkypeAPI.ruleset" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Microsoft.Office.Uc.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
