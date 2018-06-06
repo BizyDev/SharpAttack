@@ -42,19 +42,19 @@
       <HintPath>References\CSCore.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Lync.Controls">
-      <HintPath>..\..\..\CDays\SkypeAPI\SkypeAPI\References\Microsoft.Lync.Controls.dll</HintPath>
+      <HintPath>References\Microsoft.Lync.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Lync.Controls.Framework">
-      <HintPath>..\..\..\CDays\SkypeAPI\SkypeAPI\References\Microsoft.Lync.Controls.Framework.dll</HintPath>
+      <HintPath>References\Microsoft.Lync.Controls.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Lync.Model">
-      <HintPath>..\..\..\CDays\SkypeAPI\SkypeAPI\References\Microsoft.Lync.Model.dll</HintPath>
+      <HintPath>References\Microsoft.Lync.Model.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Lync.Utilities">
-      <HintPath>..\..\..\CDays\SkypeAPI\SkypeAPI\References\Microsoft.Lync.Utilities.dll</HintPath>
+      <HintPath>References\Microsoft.Lync.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Uc">
-      <HintPath>..\..\..\CDays\SkypeAPI\SkypeAPI\References\Microsoft.Office.Uc.dll</HintPath>
+      <HintPath>References\Microsoft.Office.Uc.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="PresentationCore" />
