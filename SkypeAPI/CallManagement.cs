@@ -16,6 +16,7 @@ namespace SkypeAPI
 
         private readonly Recorder _audioRecorder;
         private Thread _recordingThread;
+        private Conversation _currentConversation;
 
         public CallManagement()
         {
@@ -45,7 +46,9 @@ namespace SkypeAPI
                 case ModalityState.Connected:
                     Console.WriteLine("Call started"); //stop audio recording.
 
-                    _recordingThread = new Thread(() => { _audioRecorder.Record(); });
+                    var audioProperties = _currentConversation.Modalities[ModalityTypes.AudioVideo].Properties;
+                    var device = audioProperties[ModalityProperty.AVModalityAudioRenderDevice];
+                    _recordingThread = new Thread(() => { _audioRecorder.Record(device.ToString()); });
                     _recordingThread.Start();
 
                     break;
@@ -66,6 +69,7 @@ namespace SkypeAPI
         {
             _avModality = (AVModality)e.Conversation.Modalities[ModalityTypes.AudioVideo];
             _avModality.ModalityStateChanged += AvModality_ModalityStateChanged;
+            _currentConversation = e.Conversation;
         }
 
     }

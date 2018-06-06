@@ -22,7 +22,7 @@ namespace SkypeAPI
         private WaveWriter _waveWriter;
         private Stopwatch _timer;
 
-        public void Record(string audioFilePath = @"C:\Temp\output.wav")
+        public void Record(string deviceName, string audioFilePath = @"C:\Temp\output.wav")
         {
             _timer = new Stopwatch(); 
             _timer.Start();
@@ -39,14 +39,8 @@ namespace SkypeAPI
                 return;
             }
 
-            Console.WriteLine("### Available devices:");
-            for (int i = 0; i < devices.Count; i++)
-            {
-                Console.WriteLine("### - {0:#00}: {1}", i, devices[i].FriendlyName);
-            }
-
-            var device = devices[1]; //TODO
-
+            Console.WriteLine($"### Using device {deviceName}");
+            var device = devices.First(d => d.FriendlyName.Equals(deviceName));
 
             //start recording
             //create a new soundIn instance
