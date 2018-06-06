@@ -22,6 +22,8 @@ namespace SkypeAPI
         private WaveWriter _waveWriter;
         private Stopwatch _timer;
 
+        public event EventHandler<AudioRecorderEventArgs> AudioFileCaptured;
+
         public void Record(string deviceName, string audioFilePath = @"C:\Temp\output.wav")
         {
             _timer = new Stopwatch(); 
@@ -116,6 +118,7 @@ namespace SkypeAPI
             _convertedSource.Dispose();
             _soundIn.Dispose();
 
+            AudioFileCaptured?.Invoke(this, new AudioRecorderEventArgs(){AudioFilePath = audioFilePath});
         }
 
         public void Stop()
@@ -129,5 +132,10 @@ namespace SkypeAPI
             // ReSharper disable once UnusedMember.Local
             LoopbackCapture = 2
         }
+    }
+
+    public class AudioRecorderEventArgs : EventArgs
+    {
+        public string AudioFilePath { get; set; }
     }
 }

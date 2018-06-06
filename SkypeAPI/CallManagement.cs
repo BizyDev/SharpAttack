@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using Microsoft.Lync.Model;
 using Microsoft.Lync.Model.Conversation;
@@ -8,19 +9,26 @@ namespace SkypeAPI
 {
     public class CallManagement
     {
-        //self participant's AvModality
-        private AVModality _avModality;
-
-        //holds the Lync client instance
-        private LyncClient _lyncClient;
-
         private readonly Recorder _audioRecorder;
+        private readonly SpeakerRecognitionClient _speakerRecognitionClient;
+
+        private AVModality _avModality;
+        private LyncClient _lyncClient;
         private Thread _recordingThread;
         private Conversation _currentConversation;
 
         public CallManagement()
         {
+            _speakerRecognitionClient = new SpeakerRecognitionClient();
             _audioRecorder = new Recorder();
+            _audioRecorder.AudioFileCaptured += _audioRecorder_AudioFileCaptured;   
+        }
+
+        private void _audioRecorder_AudioFileCaptured(object sender, AudioRecorderEventArgs e)
+        {
+            var participantIdentifier = _currentConversation.Participants.First(p => !p.IsSelf).Contact.Uri;
+            _speakerRecognitionClient.Verify(participantIdentifier, e.AudioFilePath);
+
         }
 
         public void Init()
